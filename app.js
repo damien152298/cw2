@@ -45,6 +45,38 @@ app.get('/collection/:collectionName/:id', (req, res, next) => {
     }) 
 })
 
+// add an object
+app.post('/collection/:collectionName', (req, res, next) => {
+    req.collection.insert(req.body, (e, results) => {
+        if (e) return next(e)
+        res.send(results.ops)
+    })
+})
+
+// update an object by ID
+app.put('/collection/:collectionName/:id', (req, res, next) => {
+    req.collection.update(
+        { _id: new ObjectID(req.params.id) },
+        { $set: req.body },
+        { safe: true, multi: false },
+        (e, result) => {
+            if (e) return next(e)
+            res.send((result.result.n === 1) ?
+                {msg: 'success'} : { msg: 'error'})
+     }) 
+})
+
+// delete an object by ID
+app.delete('/collection/:collectionName/:id', (req, res, next) => {
+    req.collection.deleteOne(
+        { _id: ObjectID(req.params.id) },
+        (e, result) => {
+            if (e) return next(e)
+            res.send((result.result.n === 1) ?
+                {msg: 'success'} : {msg: 'error'})
+        })
+    })
+
 // the 'logger' middleware
 app.use(function(req, res, next) {
 console.log("Request IP: " + req.url);

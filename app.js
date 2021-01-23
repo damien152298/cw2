@@ -1,0 +1,66 @@
+var express = require("express");
+var app = express();
+var path = require("path");
+var fs = require("fs");
+
+// connect to MongoDB
+const MongoClient = require('mongodb').MongoClient;
+let db;
+MongoClient.connect('mongodb+srv://damien:damien152298m@cst3310.dctdu.mongodb.net/webstore?retryWrites=true&w=majority', (err, client) => {
+    db = client.db('webstore')
+})
+// get the collection name
+app.param('collectionName', (req, res, next, collectionName) => {
+    req.collection = db.collection(collectionName)
+    // console.log('collection name:', req.collection)
+    return next()
+})
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
+// dispaly a message for root path to show that API is working
+app.get('/', function (req, res) {
+    res.send('Select a collection, e.g., /collection/messages')
+})
+// retrieve all the objects from an collection
+app.get('/collection/:collectionName', (req, res) => {
+    req.collection.find({}).toArray((e, results) => {
+        if (e) return next(e)
+        res.send(results)
+    })
+})
+
+// retrieve an object by mongodb ID
+const ObjectID = require('mongodb').ObjectID;
+app.get('/collection/:collectionName/:id', (req, res, next) => {
+    req.collection.findOne(
+        { _id: new ObjectID(req.params.id) },
+        (e, result) => {
+            if (e) return next(e)
+            res.send(result)
+    }) 
+})
+
+// the 'logger' middleware
+app.use(function(req, res, next) {
+console.log("Request IP: " + req.url);
+console.log("Request date: " + new Date());
+next(); 
+});
+
+app.use(express.static('static'));
+
+    //ERROR HANDLING MIDDLEWARE
+    app.use(function(req, res) {
+    res.status(404);
+    res.send("File not found!");
+    });
+
+
+app.listen(3000, function() {
+console.log("App started on port 3000");
+});

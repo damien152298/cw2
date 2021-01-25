@@ -119,13 +119,19 @@
       <script>
 
         // set the url to your server and route
-        fetch('https://herokutestcst.herokuapp.com/collection/lessonsinfo',console.log(db), {
-            method: 'GET', // set the HTTP method as 'GET'
+        fetch('https://herokutestcst.herokuapp.com/collection/lessonsinfo', {
+            method: 'GET', // set the HTTP method as 'POST'
             headers: {
                 'Content-Type': 'application/json', // set the data type as JSON
-            
             },
         })
+            .then(response => response.json())
+            .then(responseJSON => {
+                document.getElementById('response').innerText = JSON.stringify(responseJSON);
+            })
+            .catch((error) => {
+                document.getElementById('error').innerText = error;
+            });
 
 
       </script>

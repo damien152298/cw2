@@ -124,15 +124,8 @@
             headers: {
                 'Content-Type': 'application/json', // set the data type as JSON
             },
-           //body: JSON.stringify(newProduct), // need to stringify the JSON object
         })
-            .then(response => response.json())
-            .then(responseJSON => {
-                document.getElementById('response').innerText = JSON.stringify(responseJSON);
-            })
-            .catch((error) => {
-                document.getElementById('error').innerText = error;
-            });
+
 
       </script>
    </body>

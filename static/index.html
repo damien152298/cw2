@@ -131,7 +131,7 @@ function append(parent, el) {
 }
 
 const ul = document.getElementById('authors');
-const url = 'https://randomuser.me/api/?results=10';
+const url = 'https://coursework2mdx.herokuapp.com/collection/lessonsinfo';
 
 fetch(url)
 .then((resp) => resp.json())
@@ -140,7 +140,7 @@ fetch(url)
   return authors.map(function(author) {
     let li = createNode('li');
     let span = createNode('span');
-    span.innerHTML = `${author.name.first} ${author.name.last}`;
+    span.innerHTML = `${title} ${slots}`;
     append(li, span);
     append(ul, li);
   })

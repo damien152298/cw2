@@ -100,13 +100,13 @@
             <br>
             <br>
                 <ul id="orderItems">
-                  <div v-for="(lessons%20information, index) in checkOutCart" class="item_holder">
-                     <img id="imageSize" v-bind:src="lessons%20information.image">
-                    Subject: {{ lessons%20information.title }}
+                  <div v-for="(products, index) in checkOutCart" class="item_holder">
+                     <img id="imageSize" v-bind:src="products.image">
+                    Subject: {{ products.title }}
                     <br>
-                    Location: {{ lessons%20information.description }}
+                    Location: {{ products.description }}
                     <br>
-                    Price: {{ lessons%20information.price }}
+                    Price: {{ products.price }}
                     <button class="btn btn-primary" v-on:click='removeCart(index)'>Remove Item</button>
                   </div>
                 </ul>
@@ -119,7 +119,7 @@
       <script>
 
         // set the url to your server and route
-        fetch('https://herokutestcst.herokuapp.com/collection/lessons%20information', {
+        fetch('https://herokutestcst.herokuapp.com/collection/lessonsinfo', {
             method: 'GET', // set the HTTP method as 'GET'
             headers: {
                 'Content-Type': 'application/json', // set the data type as JSON

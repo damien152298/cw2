@@ -142,7 +142,7 @@ fetch(url)
     let img = createNode('img');
     let span = createNode('span');
     img.src = author.picture.medium;
-    span.innerHTML = `${author.title.first} ${author.name.last}`;
+    span.innerHTML = `${author.title}`;
     append(li, img);
     append(li, span);
     append(ul, li);

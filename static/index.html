@@ -132,12 +132,12 @@ const url = 'https://coursework2mdx.herokuapp.com/collection/lessonsinfo';
 fetch(url)
 .then((resp) => resp.json())
 .then(function(data) {
-  let authors = data.results;
-  return authors.map(function(author) {
+  let product_holder = data.results;
+  return product_holder.map(function(product_holder) {
     let li = createNode('li');
     let img = createNode('img');
     let span = createNode('span');
-    img.src = author.picture.medium;
+    img.src = product_holder.picture.medium;
     span.innerHTML = `${product_holder.title} ${product_holder.description}`;
     append(li, img);
     append(li, span);

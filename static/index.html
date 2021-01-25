@@ -140,7 +140,7 @@ fetch(url)
   return authors.map(function(author) {
     let li = createNode('li');
     let span = createNode('span');
-    span.innerHTML = `${lessonsinfo.title}`;
+    span.innerHTML = `${author.title}`;
     append(li, span);
     append(ul, li);
   })

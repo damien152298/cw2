@@ -133,6 +133,17 @@
                 document.getElementById('error').innerText = error;
             });
 
+            const ul = document.getElementById('product_holder');
+            const url = 'https://coursework2mdx.herokuapp.com/collection/lessonsinfo';
+
+            function createNode(element) {
+    return document.createElement(element);
+}
+
+function append(parent, el) {
+    return parent.appendChild(el);
+}
+
 
       </script>
    </body>

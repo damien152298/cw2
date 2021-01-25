@@ -36,14 +36,14 @@
             </div>
 
             <div v-if = 'showProduct'>
-               <div class="product_holder" v-for="product in products ">
-                         <h2 v-text="product.title"></h2>
+               <div class="product_holder" v-for="lessons in lessonsinfo ">
+                         <h2 v-text="lessons.title"></h2>
                          <figure>
-                             <img id="imageSize" v-bind:src="product.image">
+                             <img id="lessons" v-bind:src="lessons.image">
                          </figure>
-                         <p v-html="product.description"></p>
-                         <p>Price: {{product.price}}</p>
-                         <p>Available stock: {{product.availableInventory}}</p>
+                         <p v-html="lessons.description"></p>
+                         <p>Price: {{lessons.price}}</p>
+                         <p>Available stock: {{lessons.availableInventory}}</p>
                          
 
 

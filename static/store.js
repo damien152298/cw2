@@ -8,8 +8,8 @@ var webstore = new Vue({
             lastName: "",
             phoneNumber: "",
         },
-        products: 'https://herokutestcst.herokuapp.com/collection/lessonsinfo',
-        
+        products: products,
+
         cart: [], 
 
         checkOutCart: [],

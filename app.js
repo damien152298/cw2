@@ -45,6 +45,7 @@ app.get('/collection/:collectionName/:id', (req, res, next) => {
     }) 
 })
 
+
 // add an object
 app.post('/collection/:collectionName', (req, res, next) => {
     req.collection.insert(req.body, (e, results) => {

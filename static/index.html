@@ -36,7 +36,7 @@
             </div>
 
             <div v-if = 'showProduct'>
-               <div class="product_holder" v-for="products in product ">
+               <div class="product_holder" v-for="product in products ">
                          <h2 v-text="product.title"></h2>
                          <figure>
                              <img id="imageSize" v-bind:src="product.image">

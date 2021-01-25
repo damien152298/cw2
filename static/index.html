@@ -118,31 +118,35 @@
       <script src="store.js"></script>
       <script>
 
-        // set the url to your server and route
-        fetch('https://coursework2mdx.herokuapp.com/collection/lessonsinfo', {
-            method: 'GET', // set the HTTP method as 'POST'
-            headers: {
-                'Content-Type': 'application/json', // set the data type as JSON
-            },
-        })
-            .then(response => response.json())
-            .then(responseJSON => {
-                document.getElementById('response').innerText = JSON.stringify(responseJSON);
-            })
-            .catch((error) => {
-                document.getElementById('error').innerText = error;
-            });
-
-            const ul = document.getElementById('product_holder');
-            const url = 'https://coursework2mdx.herokuapp.com/collection/lessonsinfo';
-
-            function createNode(element) {
+function createNode(element) {
     return document.createElement(element);
 }
 
 function append(parent, el) {
-    return parent.appendChild(el);
+  return parent.appendChild(el);
 }
+
+const ul = document.getElementById('product_holder');
+const url = 'https://coursework2mdx.herokuapp.com/collection/lessonsinfo';
+
+fetch(url)
+.then((resp) => resp.json())
+.then(function(data) {
+  let authors = data.results;
+  return authors.map(function(author) {
+    let li = createNode('li');
+    let img = createNode('img');
+    let span = createNode('span');
+    img.src = author.picture.medium;
+    span.innerHTML = `${product_holder.title} ${product_holder.description}`;
+    append(li, img);
+    append(li, span);
+    append(ul, li);
+  })
+})
+.catch(function(error) {
+  console.log(error);
+});
 
 
       </script>

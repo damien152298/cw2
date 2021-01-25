@@ -100,13 +100,13 @@
             <br>
             <br>
                 <ul id="orderItems">
-                  <div v-for="(products, index) in checkOutCart" class="item_holder">
+                  <div v-for="(lessons%20information, index) in checkOutCart" class="item_holder">
                      <img id="imageSize" v-bind:src="products.image">
-                    Subject: {{ products.title }}
+                    Subject: {{ lessons%20information.title }}
                     <br>
-                    Location: {{ products.description }}
+                    Location: {{ lessons%20information.description }}
                     <br>
-                    Price: {{ products.price }}
+                    Price: {{ lessons%20information.price }}
                     <button class="btn btn-primary" v-on:click='removeCart(index)'>Remove Item</button>
                   </div>
                 </ul>

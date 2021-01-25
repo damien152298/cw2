@@ -36,7 +36,7 @@
             </div>
 
             <div v-if = 'showProduct'>
-               <div class="product_holder" v-for="product in lessonsinfo ">
+               <div class="product_holder" v-for="product in product ">
                          <h2 v-text="product.title"></h2>
                          <figure>
                              <img id="imageSize" v-bind:src="product.image">
@@ -119,7 +119,7 @@
       <script>
 
         // set the url to your server and route
-        fetch('https://herokutestcst.herokuapp.com/collection/lessonsinfo', {
+        fetch('https://herokutestcst.herokuapp.com/collection/lessonsinfo',  {
             method: 'GET', // set the HTTP method as 'GET'
             headers: {
                 'Content-Type': 'application/json', // set the data type as JSON

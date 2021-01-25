@@ -8,7 +8,7 @@ var webstore = new Vue({
             lastName: "",
             phoneNumber: "",
         },
-        lessonsinfo: lessonsinfo,
+        products: products,
 
         cart: [], 
 

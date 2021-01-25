@@ -14,6 +14,10 @@
             <h1 v-text="sitename" id="Title"></h1>
          </header>
          <main>
+
+            <h1>Authors</h1>
+<ul id="authors"></ul>
+
             <div v-if = 'showProduct' id="sorting">
                <button  class="btn btn-primary":disabled="cartFilled" v-on:click = 'showCheckout' id="checkoutBtn">{{cartItemCount}} 
                   <span class="fa fa-cart-plus"> </span> Checkout 
@@ -126,19 +130,19 @@ function append(parent, el) {
   return parent.appendChild(el);
 }
 
-const ul = document.getElementById('product_holder');
+const ul = document.getElementById('authors');
 const url = 'https://coursework2mdx.herokuapp.com/collection/lessonsinfo';
 
 fetch(url)
 .then((resp) => resp.json())
 .then(function(data) {
-  let product_holder = data.results;
-  return product_holder.map(function(product_holder) {
+  let authors = data.results;
+  return authors.map(function(author) {
     let li = createNode('li');
     let img = createNode('img');
     let span = createNode('span');
-    img.src = product_holder.picture.medium;
-    span.innerHTML = `${product_holder.title} ${product_holder.description}`;
+    img.src = author.picture.medium;
+    span.innerHTML = `${author.name.first} ${author.name.last}`;
     append(li, img);
     append(li, span);
     append(ul, li);

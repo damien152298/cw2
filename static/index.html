@@ -16,7 +16,7 @@
          <main>
 
             <h1>Authors</h1>
-<ul id="authors"></ul>
+<ul id="lessons"></ul>
 
             <div v-if = 'showProduct' id="sorting">
                <button  class="btn btn-primary":disabled="cartFilled" v-on:click = 'showCheckout' id="checkoutBtn">{{cartItemCount}} 
@@ -130,14 +130,14 @@ function append(parent, el) {
   return parent.appendChild(el);
 }
 
-const ul = document.getElementById('authors');
-const url = 'https://coursework2mdx.herokuapp.com/collection/lessonsinfo';
+const ul = document.getElementById('lessons');
+const url = 'https://randomuser.me/api/?results=10';
 
 fetch(url)
 .then((resp) => resp.json())
 .then(function(data) {
-  let authors = data.results;
-  return authors.map(function(author) {
+  let lessons = data.results;
+  return lessons.map(function(author) {
     let li = createNode('li');
     let img = createNode('img');
     let span = createNode('span');

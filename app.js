@@ -26,6 +26,10 @@ app.use(function(req, res, next) {
 app.get('/', function (req, res) {
     res.send('Select a collection, e.g., /collection/messages')
 })
+
+app.get('/images', function (req, res) {
+    res.send('select image')
+})
 // retrieve all the objects from an collection
 app.get('/collection/:collectionName', (req, res) => {
     req.collection.find({}).toArray((e, results) => {

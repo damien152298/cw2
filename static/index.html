@@ -15,7 +15,7 @@
          </header>
          <main>
 
-            <div id="slideContainer"></div>
+            <div id="slideContainer" class="product_holder"></div>
             
 
             <div v-if = 'showProduct' id="sorting">
@@ -40,7 +40,7 @@
             </div>
 
             <div v-if = 'showProduct'>
-               <div class="product_holder" v-for="product in products">
+              <!-- <div class="product_holder" v-for="product in products">
                          <h2 v-text="product.title"></h2>
                          <figure>
                              <img id="imageSize" v-bind:src="product.image">
@@ -62,7 +62,7 @@
                         Only {{product.availableInventory - cartCount(product.id)}} left!
                     </span>
                     <span v-else>Buy now!</span>
-               </div>        
+               </div>        -->
 
             </div>
             <div v-else = 'showCheckout'>
@@ -132,7 +132,7 @@ const getLessons = ()=>{
       console.log(lessonsInfo[0].title, lessonsInfo[0].price, lessonsInfo[0].description);
       var str = '<ul>'
       lessonsInfo.forEach(function(lessonsInfo) {
-         str += '<li> Subject: '+ lessonsInfo.title + ' ' + 'Price: ' + lessonsInfo.price + ' ' + 'Location: ' + lessonsInfo.description + '</li>';
+         str += '<li> Subject: '+ lessonsInfo.title + ' ' + 'Price: €' + lessonsInfo.price + ' ' + 'Location: ' + lessonsInfo.description + ' ' + 'Slots: ' + lessonsInfo.slots +  ' ' + '<button class="btn btn-primary" :disabled="formFilled"  v-on:click="addToCart(product); addToCheckOutCart(product); lessonsInfo.slots -=1">Place Order</button>' + '<br>' + '<br>' +'</li>';
 
       document.getElementById("slideContainer").innerHTML = str;
 }); 

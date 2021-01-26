@@ -15,7 +15,8 @@
          </header>
          <main>
 
-            <div id="data"></div>
+            <div id="slideContainer"></div>
+            
 
             <div v-if = 'showProduct' id="sorting">
                <button  class="btn btn-primary":disabled="cartFilled" v-on:click = 'showCheckout' id="checkoutBtn">{{cartItemCount}} 
@@ -127,7 +128,14 @@ const getLessons = ()=>{
    fetch("https://coursework2mdx.herokuapp.com/collection/lessonsinfo", {method : "get"}).then((response)=>{
       return response.json();
    }).then((data)=>{
-      console.log(data);
+      var lessonsInfo = data;
+      console.log(lessonsInfo[0].title, lessonsInfo[0].price, lessonsInfo[0].description);
+      var str = '<ul>'
+      lessonsInfo.forEach(function(lessonsInfo) {
+         str += '<li> Subject: '+ lessonsInfo.title + ' ' + 'Price: ' + lessonsInfo.price + ' ' + 'Location: ' + lessonsInfo.description + '</li>';
+
+      document.getElementById("slideContainer").innerHTML = str;
+}); 
 
    });
 

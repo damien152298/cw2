@@ -121,11 +121,7 @@
       </div>
       <script src="store.js"></script>
       <script>
-
-fetch('https://rickandmortyapi.com/api/character/')
-   .then(response => response.json())
-   .then(characters => showCharacters(characters.results));
-   console.log(characters.results)
+         
 
 const getLessons = ()=>{
    fetch("https://coursework2mdx.herokuapp.com/collection/lessonsinfo", {method : "get"}).then((response)=>{

@@ -15,8 +15,7 @@
          </header>
          <main>
 
-            <h1>Authors</h1>
-<ul id="lessons"></ul>
+            <div id="data"></div>
 
             <div v-if = 'showProduct' id="sorting">
                <button  class="btn btn-primary":disabled="cartFilled" v-on:click = 'showCheckout' id="checkoutBtn">{{cartItemCount}} 
@@ -40,7 +39,7 @@
             </div>
 
             <div v-if = 'showProduct'>
-               <div class="product_holder" v-for="product in products ">
+               <div class="product_holder" v-for="product in products">
                          <h2 v-text="product.title"></h2>
                          <figure>
                              <img id="imageSize" v-bind:src="product.image">
@@ -48,6 +47,8 @@
                          <p v-html="product.description"></p>
                          <p>Price: {{product.price}}</p>
                          <p>Available stock: {{product.availableInventory}}</p>
+
+                         
                          
 
 
@@ -61,7 +62,7 @@
                     </span>
                     <span v-else>Buy now!</span>
                </div>        
-               
+
             </div>
             <div v-else = 'showCheckout'>
                <h1>Checkout</h1>
@@ -112,42 +113,36 @@
                     <br>
                     Price: {{ products.price }}
                     <button class="btn btn-primary" v-on:click='removeCart(index)'>Remove Item</button>
+                    <div id="getTest"></div>
                   </div>
                 </ul>
-
-           
             </div>
          </main>
       </div>
       <script src="store.js"></script>
       <script>
 
-function createNode(element) {
-    return document.createElement(element);
+const getLessons = ()=>{
+   fetch("https://coursework2mdx.herokuapp.com/collection/lessonsinfo", {method : "get"}).then((response)=>{
+      return response.json();
+   }).then((data)=>{
+      console.log(data);
+
+   });
+
 }
 
-function append(parent, el) {
-  return parent.appendChild(el);
+const postOrder = ()=>{
+   fetch("https://coursework2mdx.herokuapp.com/collection/order%20information", {method : "post"}).then((response)=>{
+      return response.json();
+   }).then((data)=>{
+      console.log(data);
+
+   });
+
 }
 
-const ul = document.getElementById('lessons');
-const url = 'https://randomuser.me/api/?results=10';
-
-fetch(url)
-.then((resp) => resp.json())
-.then(function(data) {
-  let lessons = data.results;
-  return lessons.map(function(author) {
-    let li = createNode('li');
-    let span = createNode('span');
-    span.innerHTML = `${author.name.first} ${author.name.last}`;
-    append(li, span);
-    append(ul, li);
-  })
-})
-.catch(function(error) {
-  console.log(error);
-});
+getLessons()
 
 
       </script>

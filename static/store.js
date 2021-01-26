@@ -9,10 +9,12 @@ var webstore = new Vue({
             phoneNumber: "",
         },
         products: products,
+        
 
         cart: [], 
 
         checkOutCart: [],
+
 
     },
     methods:{
@@ -91,7 +93,7 @@ var webstore = new Vue({
          let char = String.fromCharCode(e.keyCode);
          if (/^[A-Za-z]+$/.test(char)) return true;
          else e.preventDefault();
-},              
+},                         
 
     },
     
